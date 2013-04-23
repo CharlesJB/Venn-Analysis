@@ -11,8 +11,8 @@ Prerequisites<a id="prerequisites"></a>
 
 Usage<a id="usage"></a>
 -------------
-Venn-Tool init
-make
+	Venn-Tool init
+	make
 
 Notes<a id="notes"></a>
 -------------
