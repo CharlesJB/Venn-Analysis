@@ -1,0 +1,37 @@
+#!/bin/bash
+VERSION=0.0.1
+
+Usage(){
+	echo ""
+	echo "This command will create the directory structure and the configuration files for each comparisons."
+	echo ""
+	echo "Usage:"
+	echo "	Venn-Tool init [config.xml]"
+	echo ""
+	echo "config.xml: A configuration file listing which samples to compare (see Documentation/config.txt)."
+	echo ""
+	echo "Available commands:"
+	echo "	help"
+	echo "	version"
+	echo ""
+}
+
+if [ "$#" -lt 1 ] || [ "$1" == "help" ]
+then
+	Usage
+	exit
+elif [ "$1" == "version" ]
+then
+	echo "Version: $VERSION"
+fi
+
+dir_scripts=$1
+config_file=$2
+
+if [ ! -e "$config_file" ]
+then
+	Usage
+fi
+
+# Create the directory structure
+eval $(xsltproc $dir_scripts/Stylesheets/directories.xsl $config_file | tail -n+2)
