@@ -7,7 +7,8 @@ A pipeline to facilitate to comparison of multiple lists using GNU Make and html
 
 Prerequisites<a id="prerequisites"></a>
 -------------
-* libxslt - LibXML: for xlstproc
+* GNU make
+* libxslt - LibXML (for xlstproc)
 
 Usage<a id="usage"></a>
 -------------
