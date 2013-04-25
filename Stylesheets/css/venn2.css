@@ -1,0 +1,58 @@
+div.circle_venn2_1 {
+	width: 200px;
+	height: 125px;
+	border-radius: 50%;
+	border: 3px solid #000;
+	position: absolute;
+	margin-left: 100px;
+	margin-top: 50px;
+}
+p.sample_venn2_1
+{
+	position: absolute;
+	font-weight: bold;
+	font-size: 18px;
+	top:20px;
+	left:50px;
+}
+div.circle_venn2_2 {
+	width: 200px;
+	height: 125px;
+	border-radius: 50%;
+	border: 3px solid #000;
+	position: absolute;
+	margin-left: 225px;
+	margin-top: 50px;
+}
+p.sample_venn2_2
+{
+	position: absolute;
+	font-weight: bold;
+	font-size: 18px;
+	top:20px;
+	left:450px;
+}
+p.value_venn2_1_0
+{
+	position: absolute;
+	font-weight: bold;
+	font-size: 17px;
+	top:95px;
+	left:150px;
+}
+p.value_venn2_1_1
+{
+	position: absolute;
+	font-weight: bold;
+	font-size: 18px;
+	top:95px;
+	left:265px;
+}
+p.value_venn2_0_1
+{
+	position: absolute;
+	font-weight: bold;
+	font-size: 18px;
+	top:95px;
+	left:360px;
+}

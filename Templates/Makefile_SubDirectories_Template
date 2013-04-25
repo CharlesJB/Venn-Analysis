@@ -1,0 +1,35 @@
+
+BASE_TARGET=__BASE_TARGET__
+
+DIR_SCRIPTS=__DIR_SCRIPTS__
+DIR_DATA_SOURCE=__DIR_DATA_SOURCE__
+DIR_DATA=data
+DIR_UTILITY=$(DIR_SCRIPTS)/Utility
+DIR_LISTS=lists
+DIR_RAW_CSS=../../Stylesheets/css
+DIR_CSS=Stylesheets/css
+
+DATA_TARGETS=$(addprefix $(DIR_DATA)/, $(DATA))
+LIST_TARGETS=$(addprefix $(DIR_LISTS)/, $(LISTS))
+CSS_TARGETS=$(addprefix $(DIR_CSS)/, $(CSS_FILES))
+
+$(shell mkdir -p $(DIR_LISTS))
+$(shell mkdir -p $(DIR_CSS))
+
+.PHONY: all
+all: $(BASE_TARGET).html
+
+$(BASE_TARGET).html: $(DIR_SCRIPTS)/Stylesheets/generateHtml.xsl $(BASE_TARGET).xml $(CSS_TARGETS)
+	xsltproc $< $(BASE_TARGET).xml > $@
+
+$(BASE_TARGET).xml: $(DIR_UTILITY)/generateXML.py $(DATA_TARGETS) $(LIST_TARGETS)
+	$(DIR_UTILITY)/generateXML.py $(DATA) > $@
+
+$(DIR_DATA)/%: $(DIR_DATA_SOURCE)/%
+	ln -sf ../$< $(DIR_DATA)
+
+$(DIR_LISTS)/%.txt: $(DATA_TARGETS) 
+	$(DIR_UTILITY)/splitSymbolsVenn.py $(shell basename $(@:.txt=)) $(DATA_TARGETS) > $@
+
+$(DIR_CSS)/%.css: $(DIR_RAW_CSS)/%.css
+	cp $< $@

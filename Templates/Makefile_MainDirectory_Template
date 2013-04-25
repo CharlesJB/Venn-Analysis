@@ -1,0 +1,18 @@
+# Thanks to Galik at: http://www.cplusplus.com/forum/unices/28931/
+
+DIR_SCRIPTS=__DIR_SCRIPTS__
+DIR_CSS=Stylesheets/css
+
+TARGET_CSS=$(addprefix $(DIR_CSS)/, $(CSS_FILES))
+
+$(shell mkdir -p $(DIR_CSS))
+
+all: $(TARGET_CSS) $(SUBDIRS)
+
+$(DIR_CSS)/%.css: $(DIR_SCRIPTS)/$(DIR_CSS)/%.css
+	cp $< $@
+
+$(SUBDIRS):
+	$(MAKE) -C $@
+
+.PHONY: $(SUBDIRS)
