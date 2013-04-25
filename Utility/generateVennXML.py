@@ -28,7 +28,8 @@ class XMLgenerator:
 
 	def startAnalysis(self):
 		self._recursiveAnnotation(0)		
-		print '</venn-analysis>'
+		if self.m_mode == "-n":
+			print '</venn-analysis>'
 
 	def _print(self):
 		allZeros = True
