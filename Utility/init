@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=0.1.1
+VERSION=0.1.2
 
 Usage(){
 	echo ""
@@ -82,10 +82,8 @@ do
 
 	# Add the css dependencies
 	echo "" >> $subdirectory/Makefile
-	for file in $(ls $dir_scripts/Stylesheets/css*)
-	do
-		echo "CSS_FILES+=$file" >> $subdirectory/Makefile
-	done
+	sample_count=$(echo $line | awk '{ print NF }')
+	echo "CSS_FILES+=venn$sample_count.css" >> $subdirectory/Makefile
 
 	# Convert the subdirectory's template with real values
         sed_dir_scripts=$(echo $dir_scripts| sed 's/\//\\\//g')
