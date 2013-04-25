@@ -12,12 +12,12 @@ Prerequisites<a id="prerequisites"></a>
 
 Usage<a id="usage"></a>
 -------------
-	Venn-Tool init
+	Venn-Tool init 
 	make
 
 Notes<a id="notes"></a>
 -------------
 * By default, init will search for a folder named "data" and will do every possible file combinations.
-* To use a different folder than the default folder, or to specify which samples to compare, you can create a "config.xml" file (see Documentation/config.txt)
+* To specify which samples to compare, une the "config.txt" file (see Documentation/config.txt).
 * You can use the "-j" option of make to launch the analysis in parallel.
 * To view the results, open the "venn-analysis.html" file using the browser of your choice.

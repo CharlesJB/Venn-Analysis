@@ -1,0 +1,5 @@
+The configuration file is a tab delimited file.
+
+Each row can contain 2 to n samples.
+
+A venn diagram will be produced for each row.
