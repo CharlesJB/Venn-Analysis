@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=0.1.2
+VERSION=0.1.3
 
 Usage(){
 	echo ""
@@ -18,7 +18,7 @@ Usage(){
 	echo ""
 }
 
-if [ "$#" -lt 2 ] || [ "$1" == "help" ]
+if [ "$#" -lt 1 ] || [ "$1" == "help" ]
 then
 	Usage
 	exit
