@@ -75,7 +75,7 @@ do
                 echo DATA+="$file " >> $subdirectory/Makefile
         done
 	echo "" >> $subdirectory/Makefile
-	for file in $(./prototype/generateXML.py -p $line)
+	for file in $($dir_scripts/Utility/generateVennXML.py -p $line)
 	do
 		echo LISTS+=$file >> $subdirectory/Makefile
 	done

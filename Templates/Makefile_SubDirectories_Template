@@ -22,8 +22,8 @@ all: $(BASE_TARGET).html
 $(BASE_TARGET).html: $(DIR_SCRIPTS)/Stylesheets/generateHtml.xsl $(BASE_TARGET).xml $(CSS_TARGETS)
 	xsltproc $< $(BASE_TARGET).xml > $@
 
-$(BASE_TARGET).xml: $(DIR_UTILITY)/generateXML.py $(DATA_TARGETS) $(LIST_TARGETS)
-	$(DIR_UTILITY)/generateXML.py $(DATA) > $@
+$(BASE_TARGET).xml: $(DIR_UTILITY)/generateVennXML.py $(DATA_TARGETS) $(LIST_TARGETS)
+	$(DIR_UTILITY)/generateVennXML.py $(DATA) > $@
 
 $(DIR_DATA)/%: $(DIR_DATA_SOURCE)/%
 	ln -sf ../$< $(DIR_DATA)
