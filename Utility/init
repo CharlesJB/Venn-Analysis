@@ -1,12 +1,12 @@
 #!/bin/bash
-VERSION=0.1.0
+VERSION=0.1.1
 
 Usage(){
 	echo ""
 	echo "This command will create the directory structure and the configuration files for each comparisons."
 	echo ""
 	echo "Usage:"
-	echo "	Venn-Tool init <data_directory> [config.txt]"
+	echo "	Venn-Tool init"
 	echo ""
 	echo "		data_directory: The directory that contains all the lists to compare."
 	echo "		config.txt: A configuration file listing which samples to compare (see Documentation/config.txt)."
@@ -32,6 +32,11 @@ dir_data=$2
 config_file=$3
 
 # Validate parameter
+if [ "$dir_data" == "" ]
+then
+	dir_data=data
+fi
+
 if [ ! -d "$dir_data" ]
 then
 	echo ""
