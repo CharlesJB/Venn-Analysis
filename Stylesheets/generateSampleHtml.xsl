@@ -8,14 +8,16 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<head>
 	</head>
 	<body>
+	<ul>
 	<xsl:for-each select="venns">
 		<xsl:for-each select="./combination">
-			<a>
+			<li><a>
 				<xsl:attribute name='href'><xsl:value-of select='path'/></xsl:attribute>
 				<xsl:value-of select='name'/>
-			</a>
+			</a></li>
 		</xsl:for-each>
 	</xsl:for-each>
+	</ul>
 	</body>
 	</html>
 </xsl:template>
