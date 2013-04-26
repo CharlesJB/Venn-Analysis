@@ -1,18 +1,26 @@
-# Thanks to Galik at: http://www.cplusplus.com/forum/unices/28931/
 
 DIR_SCRIPTS=__DIR_SCRIPTS__
+DIR_DATA=__DIR_DATA__
 DIR_CSS=Stylesheets/css
 
 TARGET_CSS=$(addprefix $(DIR_CSS)/, $(CSS_FILES))
+TARGET_HTML=index.html
 
 $(shell mkdir -p $(DIR_CSS))
 
-all: $(TARGET_CSS) $(SUBDIRS)
+all: $(TARGET_CSS) $(SUBDIRS) $(DIR_WWW) $(TARGET_HTML)
 
 $(DIR_CSS)/%.css: $(DIR_SCRIPTS)/$(DIR_CSS)/%.css
 	cp $< $@
 
+# Thanks to Galik at: http://www.cplusplus.com/forum/unices/28931/
+.PHONY: $(SUBDIRS)
 $(SUBDIRS):
 	$(MAKE) -C $@
 
-.PHONY: $(SUBDIRS)
+.PHONY: $(DIR_WWW)
+$(DIR_WWW):
+	$(MAKE) -C $@
+
+$(TARGET_HTML): $(DIR_SCRIPTS)/Utility/generateMainHtml.sh
+	$< $(DIR_DATA) > $@

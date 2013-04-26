@@ -1,0 +1,12 @@
+
+DIR_SCRIPTS=__DIR_SCRIPTS__
+DIR_STYLE=$(DIR_SCRIPTS)/Stylesheets
+
+.PHONY:all
+all: $(TARGETS)
+
+%.html: $(DIR_STYLE)/generateSampleHtml.xsl %.xml
+	xsltproc $^ > $@
+
+%.xml: $(DIR_SCRIPTS)/Utility/generateSampleXML.sh
+	$< $(@:.xml=)

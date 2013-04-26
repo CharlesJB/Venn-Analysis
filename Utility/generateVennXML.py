@@ -21,7 +21,6 @@ class XMLgenerator:
 		# If in "normal" mode, print xsl header and samples
 		if self.m_mode == "-n":
 			print '<?xml version="1.0" encoding="ISO-8859-1"?>'
-			print '<?xml-stylesheet type="text/xsl" href="prototype.xsl"?>'
 			print '<venn-analysis>'
 			for i in range(0, len(self.m_filenames)):
 				print '<sample>' + self.m_filenames[i] + '</sample>'

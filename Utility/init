@@ -60,6 +60,7 @@ fi
 
 # Reset main directory's Makefile
 rm -f Makefile
+echo "DIR_WWW+=www" > Makefile
 
 # For each combination in the config.txt file
 while read line
@@ -112,3 +113,15 @@ cat $dir_scripts/Templates/Makefile_MainDirectory_Template \
 | sed "s/__DIR_DATA__/$sed_dir_data/g" \
 | sed "s/__DIR_SCRIPTS__/$sed_dir_scripts/g" \
 >> Makefile
+
+# Prepare the www directory
+mkdir -p www
+rm -rf www/Makefile
+for sample in $(ls data)
+do
+	echo "TARGETS+=$sample.html" >> www/Makefile
+	$dir_scripts/Utility/generateSampleXML.sh $sample config.txt > www/$sample.xml
+done
+cat $dir_scripts/Templates/Makefile_wwwSample_Template \
+| sed "s/__DIR_SCRIPTS__/$sed_dir_scripts/g" \
+>> www/Makefile
