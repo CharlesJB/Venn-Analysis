@@ -65,40 +65,42 @@ echo "DIR_WWW+=www" > Makefile
 # For each combination in the config.txt file
 while read line
 do
-        # Create a subdirectory in results directory
-	subdirectory=results/$(echo $line | sed "s/ /_/g")
-        mkdir -p $subdirectory/data
-
-        # Create the Makefile for the subdirectory
-        rm -f $subdirectory/Makefile
-	for file in $line
-        do
-                echo DATA+="$file " >> $subdirectory/Makefile
-        done
-	echo "" >> $subdirectory/Makefile
-	for file in $($dir_scripts/Utility/generateVennXML.py -p $line)
-	do
-		echo LISTS+=$file >> $subdirectory/Makefile
-	done
-
-	# Add the css dependencies
-	echo "" >> $subdirectory/Makefile
 	sample_count=$(echo $line | awk '{ print NF }')
-	echo "CSS_FILES+=venn$sample_count.css" >> $subdirectory/Makefile
+	if [ "$sample_count" -gt 1 ] && [ "$sample_count" -lt 6 ]
+	then
+		# Create a subdirectory in results directory
+		subdirectory=results/$(echo $line | sed "s/ /_/g")
+		mkdir -p $subdirectory/data
 
-	# Convert the subdirectory's template with real values
-        sed_dir_scripts=$(echo $dir_scripts| sed 's/\//\\\//g')
-        sed_dir_data=$(echo $dir_data| sed 's/\//\\\//g')
-        base_targets=$(echo $files | sed 's/\t/ /g')
-        cat $dir_scripts/Templates/Makefile_SubDirectories_Template \
-        | sed "s/__DIR_SCRIPTS__/$sed_dir_scripts/g" \
-        | sed "s/__DIR_DATA_SOURCE__/\.\.\/\.\.\/$sed_dir_data/g" \
-        | sed "s/__BASE_TARGET__/$(basename $subdirectory)/g" \
-        >> $subdirectory/Makefile
+		# Create the Makefile for the subdirectory
+		rm -f $subdirectory/Makefile
+		for file in $line
+		do
+			echo DATA+="$file " >> $subdirectory/Makefile
+		done
+		echo "" >> $subdirectory/Makefile
+		for file in $($dir_scripts/Utility/generateVennXML.py -p $line)
+		do
+			echo LISTS+=$file >> $subdirectory/Makefile
+		done
 
-        # Add the subdirectory to main Makefile
-        echo SUBDIRS+=$subdirectory >> Makefile
+		# Add the css dependencies
+		echo "" >> $subdirectory/Makefile
+		echo "CSS_FILES+=venn$sample_count.css" >> $subdirectory/Makefile
 
+		# Convert the subdirectory's template with real values
+		sed_dir_scripts=$(echo $dir_scripts| sed 's/\//\\\//g')
+		sed_dir_data=$(echo $dir_data| sed 's/\//\\\//g')
+		base_targets=$(echo $files | sed 's/\t/ /g')
+		cat $dir_scripts/Templates/Makefile_SubDirectories_Template \
+		| sed "s/__DIR_SCRIPTS__/$sed_dir_scripts/g" \
+		| sed "s/__DIR_DATA_SOURCE__/\.\.\/\.\.\/$sed_dir_data/g" \
+		| sed "s/__BASE_TARGET__/$(basename $subdirectory)/g" \
+		>> $subdirectory/Makefile
+
+		# Add the subdirectory to main Makefile
+		echo SUBDIRS+=$subdirectory >> Makefile
+	fi
 done < config.txt
 
 # Complete the main makefile
