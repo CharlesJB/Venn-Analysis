@@ -9,15 +9,17 @@ Prerequisites<a id="prerequisites"></a>
 -------------
 * GNU make
 * libxslt - LibXML (for xlstproc)
+* python 2.2+
 
 Usage<a id="usage"></a>
 -------------
-	Venn-Tool init 
+	<path-to-Venn-Tool-git-repository>/Venn-Tool init 
 	make
 
 Notes<a id="notes"></a>
 -------------
-* By default, init will search for a folder named "data" and will do every possible file combinations.
-* To specify which samples to compare, une the "config.txt" file (see Documentation/config.txt).
+* The lists of element to compare must be in a folder named "data" in the main directory selected for the analysis.
+* The samples to compare must be specified in the "config.txt" file (see Documentation/config.txt).
 * You can use the "-j" option of make to launch the analysis in parallel.
-* To view the results, open the "venn-analysis.html" file using the browser of your choice.
+* To view the results, open the "index.html" file using the browser of your choice.
+* If you add data in the "data" directory or if you add new combinations of sample in "config.txt" file, you must re-run init if you want the changes to be added in the Makefiles.
