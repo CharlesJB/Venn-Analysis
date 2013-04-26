@@ -6,7 +6,7 @@ dir_scripts="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 Usage(){
 	echo "usage:"
-	echo "	PeakCalling-Tool [command]"
+	echo "	Venn-Tool [command]"
 	echo ""
 	echo "Available commands:"
 	echo "	init"
