@@ -1,0 +1,7 @@
+Each data file contains a list of element to compare with other data file.
+
+One sample per row.
+
+The filename of the list will be used as a prefix throughout the analysis and will be used to name samples in the Venn diagrams.
+
+It is best to remove the extension to avoid overly long names.

@@ -18,7 +18,7 @@ Usage<a id="usage"></a>
 
 Notes<a id="notes"></a>
 -------------
-* The lists of element to compare must be in a folder named "data" in the main directory selected for the analysis.
+* The lists of element to compare must be in a folder named "data" in the main directory selected for the analysis (see Documentation/data.txt).
 * The samples to compare must be specified in the "config.txt" file (see Documentation/config.txt).
 * You can use the "-j" option of make to launch the analysis in parallel.
 * To view the results, open the "index.html" file using the browser of your choice.
