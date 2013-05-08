@@ -28,7 +28,7 @@ $(BASE_TARGET).xml: $(DIR_UTILITY)/generateVennXML.py $(DATA_TARGETS) $(LIST_TAR
 $(DIR_DATA)/%: $(DIR_DATA_SOURCE)/%
 	ln -sf ../$< $(DIR_DATA)
 
-$(DIR_LISTS)/%.txt: $(DATA_TARGETS) 
+$(DIR_LISTS)/%.txt: $(DIR_UTILITY)/splitSymbolsVenn.py $(DATA_TARGETS)
 	$(DIR_UTILITY)/splitSymbolsVenn.py $(shell basename $(@:.txt=)) $(DATA_TARGETS) > $@
 
 $(DIR_CSS)/%.css: $(DIR_RAW_CSS)/%.css

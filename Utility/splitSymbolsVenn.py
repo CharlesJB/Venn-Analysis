@@ -50,13 +50,19 @@ class VennParser:
 
 	def _convertCombinationToValue(self, combination):
 		combinations = combination.split("_")
-		toReturn = ""
+		toReturn = 0
 		for i in range(0, len(combinations)):
-			if combinations[i] == "0":
-				toReturn += "0"
-			else:
-				toReturn += "1"
-		return int(toReturn)
+			if combinations[i] != "0":
+				completeFilename = self._fetchCompleteFilename(combinations[i])
+				colorValue = self._convertFilenameToColorValue(completeFilename)
+				toReturn = self._updateVirtualColor(colorValue, toReturn)
+		return toReturn
+
+	def _fetchCompleteFilename(self, filename):
+		for i in range(0, len(self.m_filenames)):
+			if filename == self.m_fileList[i].split("/")[len(self.m_fileList[i].split("/"))-1]:
+				return self.m_fileList[i]
+		sys.exit("_fetchCompleteFilename: Error! " + filename + " not in file list")
 
 	def _convertFilenameToColorValue(self, filename):
 		filename_index = self.m_fileList.index(filename)
