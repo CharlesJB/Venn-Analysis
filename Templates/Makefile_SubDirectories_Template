@@ -10,14 +10,18 @@ DIR_RAW_CSS=../../Stylesheets/css
 DIR_CSS=Stylesheets/css
 
 DATA_TARGETS=$(addprefix $(DIR_DATA)/, $(DATA))
-LIST_TARGETS=$(addprefix $(DIR_LISTS)/, $(LISTS))
+LIST_TARGETS=$(addsuffix .txt, $(addprefix $(DIR_LISTS)/, $(BASE_LISTS)))
+HTML_LIST_TARGETS=$(addsuffix .html, $(addprefix $(DIR_LISTS)/, $(BASE_LISTS)))
 CSS_TARGETS=$(addprefix $(DIR_CSS)/, $(CSS_FILES))
 
 $(shell mkdir -p $(DIR_LISTS))
 $(shell mkdir -p $(DIR_CSS))
 
 .PHONY: all
-all: $(BASE_TARGET).html
+all: $(BASE_TARGET).html $(HTML_LIST_TARGETS)
+
+$(DIR_LISTS)/%.html: $(DIR_UTILITY)/ConvertListToHtml.sh $(DIR_LISTS)/%.txt
+	$^ > $@
 
 $(BASE_TARGET).html: $(DIR_SCRIPTS)/Stylesheets/generateHtml.xsl $(BASE_TARGET).xml $(CSS_TARGETS)
 	xsltproc $< $(BASE_TARGET).xml > $@

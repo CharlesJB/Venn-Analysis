@@ -44,6 +44,7 @@ class XMLgenerator:
 				print '\t\t<name>' + self._convertValueToString() + '</name>'
 				print '\t\t<id>' + self._createID() + '</id>'
 				print '\t\t<path>lists/' + self._convertValueToName() + '.txt</path>'
+				print '\t\t<html>lists/' + self._convertValueToName() + '.html</html>'
 				print '\t\t<count>' + self._fetchCount() + '</count>'
 				print '\t</value>'
 

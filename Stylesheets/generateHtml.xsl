@@ -30,7 +30,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<xsl:attribute name='class'>
 				value_venn<xsl:value-of select="count(/venn-analysis/sample)"/>_<xsl:value-of select='name'/></xsl:attribute>
 				<a>
-					<xsl:attribute name='href'><xsl:value-of select='path'/></xsl:attribute>
+					<xsl:attribute name='href'><xsl:value-of select='html'/></xsl:attribute>
 					<xsl:attribute name='id'><xsl:value-of select='id'/></xsl:attribute>
 					<xsl:value-of select='count'/>
 				</a>

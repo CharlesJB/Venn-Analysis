@@ -81,7 +81,7 @@ do
 		echo "" >> $subdirectory/Makefile
 		for file in $($dir_scripts/Utility/generateVennXML.py -p $line)
 		do
-			echo LISTS+=$file >> $subdirectory/Makefile
+			echo BASE_LISTS+=${file%.*} >> $subdirectory/Makefile
 		done
 
 		# Add the css dependencies
